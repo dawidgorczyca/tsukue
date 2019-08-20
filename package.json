@@ -1,5 +1,5 @@
 {
-  "name": "Tsukue",
+  "name": "tsukue",
   "productName": "Tsukue",
   "version": "0.7.1",
   "description": "A boilerplate for Electron + React + Parcel, in TypeScript.",
@@ -18,7 +18,8 @@
     "renderer:build": "parcel build app/renderer/index.html --public-url ./ --out-dir app/renderer/.parcel/production",
     "test": "run-s parcel:build \"test:jest {@}\" --",
     "test:jest": "jest",
-    "lint": "tslint app/**/*.ts{,x}"
+    "lint": "tslint app/**/*.ts{,x}",
+    "prettify": "prettier --write \"./app/**/*.{ts,tsx}\""
   },
   "author": {
     "name": "Inqu",
@@ -116,6 +117,7 @@
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.11.0",
+    "prettier": "1.18.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
@@ -131,8 +133,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint && npm run test"
+      "pre-commit": "yarn run prettify && yarn run lint",
+      "pre-push": "yarn run prettify && yarn run lint && yarn run test"
     }
   }
 }

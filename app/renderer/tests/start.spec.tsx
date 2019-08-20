@@ -6,7 +6,9 @@ import Start from '../pages/start'
 
 test('page Start', () => {
   const component = Renderer.create(
-    <MemoryRouter><Start /></MemoryRouter>,
+    <MemoryRouter>
+      <Start />
+    </MemoryRouter>
   )
   const tree = component.toJSON()
   expect(tree).toMatchSnapshot()

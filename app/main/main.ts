@@ -11,7 +11,7 @@ const installExtensions = async () => {
 
   return Promise.all(
     extensions.map((name) => installer.default(installer[name], forceDownload))
-  // tslint:disable-next-line:no-console
+    // tslint:disable-next-line:no-console
   ).catch(console.log)
 }
 
@@ -19,7 +19,7 @@ app.on('ready', async () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    show: false
+    show: false,
   })
   if (isDev) {
     await installExtensions()
@@ -35,7 +35,7 @@ app.on('ready', async () => {
   const prodPath = format({
     pathname: resolve('app/renderer/.parcel/production/index.html'),
     protocol: 'file:',
-    slashes: true
+    slashes: true,
   })
   const url = isDev ? devPath : prodPath
 

@@ -6,7 +6,9 @@ import Router from '../router'
 
 test('route /', () => {
   const component = Renderer.create(
-    <MemoryRouter initialEntries={['/']}><Router /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/']}>
+      <Router />
+    </MemoryRouter>
   )
   const tree = component.toJSON()
   expect(tree).toMatchSnapshot()
@@ -14,7 +16,9 @@ test('route /', () => {
 
 test('route /start', () => {
   const component = Renderer.create(
-    <MemoryRouter initialEntries={['/start']}><Router /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/start']}>
+      <Router />
+    </MemoryRouter>
   )
   const tree = component.toJSON()
   expect(tree).toMatchSnapshot()
@@ -22,7 +26,9 @@ test('route /start', () => {
 
 test('route /dummy', () => {
   const component = Renderer.create(
-    <MemoryRouter initialEntries={['/dummy']}><Router /></MemoryRouter>,
+    <MemoryRouter initialEntries={['/dummy']}>
+      <Router />
+    </MemoryRouter>
   )
   const tree = component.toJSON()
   expect(tree).toMatchSnapshot()
