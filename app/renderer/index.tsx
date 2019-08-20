@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import Router from './router'
+import Root from './pages/root'
 
 const render = (Component) => {
   ReactDOM.render(<Component />, document.getElementById('root'))
 }
 
-render(Router)
+render(Root)
