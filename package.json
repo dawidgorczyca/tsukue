@@ -134,7 +134,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn run prettify && yarn run lint",
-      "pre-push": "yarn run prettify && yarn run lint && yarn run test"
+      "pre-push": "yarn run prettify && yarn run lint"
     }
   }
 }
