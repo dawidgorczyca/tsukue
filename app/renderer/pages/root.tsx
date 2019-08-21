@@ -33,7 +33,7 @@ const RootComponent = () => {
 
   return (
     <div className='app'>
-      <WindowBarComponent/>
+      <WindowBarComponent />
       <PlayerComponent
         title='C.R.E.A.M'
         artist='Wu-Tang Clan'

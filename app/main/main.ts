@@ -22,7 +22,7 @@ app.on('ready', async () => {
     show: false,
     frame: false,
     movable: true,
-    title: 'Leonin - Simple Music'
+    title: 'Leonin - Simple Music',
   })
   if (isDev) {
     await installExtensions()

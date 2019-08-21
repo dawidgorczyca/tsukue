@@ -3,19 +3,10 @@ import { Icon } from '@blueprintjs/core'
 
 const iconSize = 20
 
-const PlayerComponent = ({
-  filename,
-  id,
-  trackLength,
-  currentPosition,
-  title,
-  artist,
-}) => {
+const PlayerComponent = ({ filename, id, trackLength, currentPosition, title, artist }) => {
   return (
     <div className='player'>
-      <div className='player__info-screen'>
-        {artist && title ? `${artist} - ${title}` : filename}
-      </div>
+      <div className='player__info-screen'>{artist && title ? `${artist} - ${title}` : filename}</div>
       <div className='player__timeline'>
         {currentPosition} / {trackLength}
       </div>
