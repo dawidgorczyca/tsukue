@@ -1,9 +1,16 @@
 import * as React from 'react'
+import { observer } from 'mobx-react'
 import { Icon } from '@blueprintjs/core'
+
+import StoresContext from '../stores/storesContext'
 
 const iconSize = 20
 
-const PlayerComponent = ({ filename, id, trackLength, currentPosition, title, artist }) => {
+const PlayerComponent = ({ currentPosition }) => {
+  const { PlaylistStore } = React.useContext(StoresContext)
+  const { selected } = PlaylistStore
+  const { filename, trackLength, title, artist } = selected
+
   return (
     <div className='player'>
       <div className='player__info-screen'>{artist && title ? `${artist} - ${title}` : filename}</div>
@@ -22,4 +29,4 @@ const PlayerComponent = ({ filename, id, trackLength, currentPosition, title, ar
   )
 }
 
-export default PlayerComponent
+export default observer(PlayerComponent)

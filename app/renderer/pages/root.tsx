@@ -27,22 +27,11 @@ const PlaylistItemsMocked = [
 ]
 
 const RootComponent = () => {
-  const handlePlaylistItem = (trackId: string | number) => {
-    const track = trackId
-  }
-
   return (
     <div className='app'>
       <WindowBarComponent />
-      <PlayerComponent
-        title='C.R.E.A.M'
-        artist='Wu-Tang Clan'
-        trackLength='3:34'
-        id='4'
-        currentPosition='0:00'
-        filename='WuTangClan - C.R.E.A.M..mp3'
-      />
-      <PlaylistComponent items={PlaylistItemsMocked} handleItem={handlePlaylistItem} />
+      <PlayerComponent {...PlaylistItemsMocked[1]} currentPosition='0:00' />
+      <PlaylistComponent items={PlaylistItemsMocked} />
     </div>
   )
 }

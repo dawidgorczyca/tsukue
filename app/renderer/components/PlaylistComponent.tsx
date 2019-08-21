@@ -1,14 +1,18 @@
 import * as React from 'react'
 
 import InterfacePlaylist from '../interfaces/InterfacePlaylist'
+import StoresContext from '../stores/storesContext'
 
-const PlaylistComponent = ({ items, handleItem }: InterfacePlaylist) => {
+const PlaylistComponent = ({ items }: InterfacePlaylist) => {
+  const { PlaylistStore } = React.useContext(StoresContext)
+  const { setSelected } = PlaylistStore
+
   const handleItems = () =>
     items.map((item) => {
       const { filename, title, artist, trackLength, trackId } = item
 
       let element = (
-        <li key={trackId} onClick={() => handleItem(trackId)}>
+        <li key={trackId} onClick={() => setSelected(item)}>
           <span className='playlist-item__filename'>{filename}</span>
           <span className='playlist-item__track-length'>{trackLength}</span>
         </li>
@@ -16,7 +20,7 @@ const PlaylistComponent = ({ items, handleItem }: InterfacePlaylist) => {
 
       if (artist || title) {
         element = (
-          <li key={trackId} onClick={() => handleItem(trackId)}>
+          <li key={trackId} onClick={() => setSelected(item)}>
             {artist ? <span className='playlist-item__artist'>{artist}</span> : ''}
             {title ? <span className='playlist-item__title'>{title}</span> : ''}
             <span className='playlist-item__track-length'>{trackLength}</span>
