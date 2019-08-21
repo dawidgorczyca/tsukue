@@ -1,6 +1,10 @@
 import * as React from 'react'
 
+import PlayerComponent from '../components/PlayerComponent'
 import PlaylistComponent from '../components/PlaylistComponent'
+import WindowBarComponent from '../components/WindowBarComponent'
+
+import '../styles/main.scss'
 
 const PlaylistItemsMocked = [
   {
@@ -28,7 +32,16 @@ const RootComponent = () => {
   }
 
   return (
-    <div>
+    <div className='app'>
+      <WindowBarComponent/>
+      <PlayerComponent
+        title='C.R.E.A.M'
+        artist='Wu-Tang Clan'
+        trackLength='3:34'
+        id='4'
+        currentPosition='0:00'
+        filename='WuTangClan - C.R.E.A.M..mp3'
+      />
       <PlaylistComponent items={PlaylistItemsMocked} handleItem={handlePlaylistItem} />
     </div>
   )

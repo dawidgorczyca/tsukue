@@ -17,9 +17,12 @@ const installExtensions = async () => {
 
 app.on('ready', async () => {
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 400,
     height: 600,
     show: false,
+    frame: false,
+    movable: true,
+    title: 'Leonin - Simple Music'
   })
   if (isDev) {
     await installExtensions()

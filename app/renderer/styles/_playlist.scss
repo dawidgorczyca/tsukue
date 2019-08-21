@@ -1,0 +1,42 @@
+.playlist {
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border-bottom: 1px dotted lighten(black, 10%);
+    font-family: 'changaregular';
+
+    .playlist-item__filename, .playlist-item__artist, .playlist-item__title {
+      float: left;
+    }
+
+    .playlist-item__artist {
+      margin-right: 5px;
+
+      &::after {
+        content: ' -';
+      }
+    }
+
+    .playlist-item__track-length {
+      float: right;
+      color: gray;
+    }
+
+    .selected {
+      background-color: purple;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: darken(purple, 18%);
+    }
+  }
+}

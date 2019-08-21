@@ -1,0 +1,28 @@
+.player {
+  float: left;
+  width: 100%;
+
+  .player__info-screen {
+    font-family: 'changabold';
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .player__timeline {
+    text-align: center;
+  }
+
+  .player__menu {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    margin: 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+
+    .bp3-icon:hover {
+      cursor: pointer;
+    }
+  }
+}
