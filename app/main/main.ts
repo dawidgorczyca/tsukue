@@ -1,8 +1,17 @@
 const { format } = require('url')
 
-const { BrowserWindow, app } = require('electron')
+const { BrowserWindow, app, ipcMain } = require('electron')
 const isDev = require('electron-is-dev')
 const { resolve } = require('app-root-path')
+
+const LocalStorage = require('./LocalStore')
+
+const SettingsStorage = new LocalStorage({
+  configName: 'leonin-settings',
+  defaults: {
+    position: [0, 0],
+  },
+})
 
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer')
@@ -16,6 +25,8 @@ const installExtensions = async () => {
 }
 
 app.on('ready', async () => {
+  const savedPosition = SettingsStorage.get('position')
+
   const mainWindow = new BrowserWindow({
     width: 400,
     height: 600,
@@ -23,10 +34,14 @@ app.on('ready', async () => {
     frame: false,
     movable: true,
     title: 'Leonin - Simple Music',
+    x: savedPosition[0],
+    y: savedPosition[1],
   })
+
   if (isDev) {
     await installExtensions()
   }
+
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
     if (isDev) {
@@ -44,6 +59,19 @@ app.on('ready', async () => {
 
   mainWindow.setMenu(null)
   mainWindow.loadURL(url)
+
+  ipcMain.on('ipc-event', (event: { sender: { send: (arg0: string, arg1: string) => void } }, arg: any) => {
+    console.log(arg)
+    event.sender.send('ipc-event-reply', 'pong')
+    ipcMain.send('music', filePayload)
+  })
+
+
+  mainWindow.on('move', () => {
+    SettingsStorage.set('position', mainWindow.getPosition())
+  })
 })
 
-app.on('window-all-closed', app.quit)
+app.on('window-all-closed', () => {
+  app.quit()
+})
