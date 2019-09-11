@@ -130,6 +130,7 @@
     "@blueprintjs/core": "^3.18.0",
     "@blueprintjs/icons": "^3.10.0",
     "app-root-path": "^2.1.0",
+    "dataurl": "^0.1.0",
     "electron-is-dev": "^1.0.1",
     "fs-extra": "^8.1.0",
     "is-valid-path": "^0.1.1",

@@ -63,9 +63,9 @@ app.on('ready', async () => {
   mainWindow.setMenu(null)
   mainWindow.loadURL(url)
 
-  ipcMain.on('file/readFile', async (event: { sender: { send: (arg0: string, arg1: string) => void } }, arg: any) => {
-    const fileData = await FileSystem.readFile(arg)
-    event.sender.send('file/readFile/reply', fileData)
+  ipcMain.on('file/readSong', async (event: { sender: { send: (arg0: string, arg1: string) => void } }, arg: any) => {
+    const fileData = await FileSystem.readSong(arg)
+    event.sender.send('file/readSong/reply', fileData)
   })
 
   mainWindow.on('move', () => {

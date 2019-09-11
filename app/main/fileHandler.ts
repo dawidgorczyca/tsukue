@@ -1,6 +1,6 @@
-const electron = require('electron')
-const path = require('path')
-const fs = require('fs-extra')
+const pathHandler = require('path')
+const fsHandler = require('fs-extra')
+const dataurl = require('dataurl')
 const isValid = require('is-valid-path')
 
 class FileHandler {
@@ -9,7 +9,7 @@ class FileHandler {
       const validation = this.validatePath(pathData)
 
       if (validation) {
-        const response = await fs.readDir(path.join(pathData))
+        const response = await fsHandler.readDir(pathHandler.join(pathData))
         return response
       }
 
@@ -25,11 +25,21 @@ class FileHandler {
       const validation = this.validatePath(filePath)
 
       if (validation) {
-        const response = await fs.readFile(filePath)
+        const response = await fsHandler.readFile(filePath)
         return response
       }
 
       return 'invalid path'
+    } catch (error) {
+      // tslint:disable-next-line: no-console
+      console.log(error)
+    }
+  }
+
+  public async readSong(songPath) {
+    try {
+      const data = await this.readFile(songPath)
+      return dataurl.convert({ data, mimetype: 'audio/mp3' })
     } catch (error) {
       // tslint:disable-next-line: no-console
       console.log(error)

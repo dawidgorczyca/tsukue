@@ -34,7 +34,7 @@ const RootComponent = () => {
   const [currentSong, setCurrentSong] = React.useState()
 
   const handleSongPath = (songPath: string) => {
-    IpcService.sendEvent('file/readFile', songPath)
+    IpcService.sendEvent('file/readSong', songPath)
   }
 
   React.useEffect(() => {

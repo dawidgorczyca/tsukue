@@ -12,8 +12,6 @@ const PlayerComponent = ({ currentPosition }) => {
   const { filename, trackLength, title, artist } = selected
   const { songData } = PlayerStore
 
-  console.log(songData)
-
   // tslint:disable: jsx-no-multiline-js
   return (
     <div className='player'>
