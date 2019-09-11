@@ -5,6 +5,7 @@ const isDev = require('electron-is-dev')
 const { resolve } = require('app-root-path')
 
 const LocalStorage = require('./LocalStore')
+const FileService = require('./FileHandler')
 
 const SettingsStorage = new LocalStorage({
   configName: 'leonin-settings',
@@ -12,6 +13,8 @@ const SettingsStorage = new LocalStorage({
     position: [0, 0],
   },
 })
+
+const FileSystem = new FileService()
 
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer')
@@ -60,12 +63,10 @@ app.on('ready', async () => {
   mainWindow.setMenu(null)
   mainWindow.loadURL(url)
 
-  ipcMain.on('ipc-event', (event: { sender: { send: (arg0: string, arg1: string) => void } }, arg: any) => {
-    console.log(arg)
-    event.sender.send('ipc-event-reply', 'pong')
-    ipcMain.send('music', filePayload)
+  ipcMain.on('file/readFile', async (event: { sender: { send: (arg0: string, arg1: string) => void } }, arg: any) => {
+    const fileData = await FileSystem.readFile(arg)
+    event.sender.send('file/readFile/reply', fileData)
   })
-
 
   mainWindow.on('move', () => {
     SettingsStorage.set('position', mainWindow.getPosition())

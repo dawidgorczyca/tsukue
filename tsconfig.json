@@ -4,6 +4,7 @@
     "jsx": "preserve",
     "sourceMap": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["node"]
   }
 }

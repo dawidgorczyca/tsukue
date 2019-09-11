@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import IpcService from '../services/Ipc.service'
+
 import PlayerComponent from '../components/PlayerComponent'
 import PlaylistComponent from '../components/PlaylistComponent'
 import WindowBarComponent from '../components/WindowBarComponent'
@@ -29,17 +31,22 @@ const PlaylistItemsMocked = [
 ]
 
 const RootComponent = () => {
-  electron.ipcRenderer.send('ipc-event', 'ping')
+  const [ currentSong, setCurrentSong ] = React.useState()
 
-  electron.ipcRenderer.on('ipc-event-reply', (event: any, res: any) => {
-    console.log(res)
-  })
+  const handleSongPath = (songPath: string) => {
+    IpcService.sendEvent('file/readFile', songPath)
+  }
+
+  React.useEffect(() => {
+    IpcService.registerEvents()
+  }, [])
+
   return (
     <div className='app'>
       <WindowBarComponent />
       <PlayerComponent {...PlaylistItemsMocked[1]} currentPosition='0:00' />
       <PlaylistComponent items={PlaylistItemsMocked} />
-      <input type='file' onChange={(e) => console.log(e.target.files)} />
+      <input type='file' onChange={(e) => handleSongPath(e.target.files[0].path)} />
     </div>
   )
 }

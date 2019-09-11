@@ -7,12 +7,22 @@ import StoresContext from '../stores/storesContext'
 const iconSize = 20
 
 const PlayerComponent = ({ currentPosition }) => {
-  const { PlaylistStore } = React.useContext(StoresContext)
+  const { PlaylistStore, PlayerStore } = React.useContext(StoresContext)
   const { selected } = PlaylistStore
   const { filename, trackLength, title, artist } = selected
+  const { songData } = PlayerStore
 
+  console.log(songData)
+
+  // tslint:disable: jsx-no-multiline-js
   return (
     <div className='player'>
+      {songData ? (
+        <audio controls>
+          <source src={songData} type="audio/mpeg"/>
+        Your browser does not support the audio element.
+        </audio>
+      ) : ''}
       <div className='player__info-screen'>{artist && title ? `${artist} - ${title}` : filename}</div>
       <div className='player__timeline'>
         {currentPosition} / {trackLength}

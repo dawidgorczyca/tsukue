@@ -1,9 +1,10 @@
-import { observable, computed } from 'mobx'
+import { observable, computed, action } from 'mobx'
 import InterfacePlaylistItem from '../interfaces/InterfacePlaylistItem'
 
 class PlayerStore {
   @observable public playbackStatus = false
   @observable public currentPosition = '0:00'
+  @observable public songData
 
   @computed get currentStatus() {
     let output = 'idle'
@@ -17,6 +18,11 @@ class PlayerStore {
     }
 
     return output
+  }
+
+  @action.bound
+  public setSongData(payload) {
+    this.songData = payload
   }
 }
 
