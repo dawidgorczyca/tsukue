@@ -1,5 +1,7 @@
 interface InterfacePlaylistItem {
-  trackId: string | number
+  name: string
+  path: string
+  trackId?: string | number
   trackLength: string | number
   filename?: string
   artist?: string

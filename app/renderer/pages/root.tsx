@@ -11,26 +11,6 @@ import '../styles/main.scss'
 
 const electron = window.require('electron')
 
-const PlaylistItemsMocked = [
-  {
-    trackId: 1,
-    artist: 'Thom Yorke',
-    title: 'Black Swan',
-    trackLength: '3:45',
-  },
-  {
-    trackId: 2,
-    artist: 'Radiohead',
-    title: 'Karma Police',
-    trackLength: '3:29',
-  },
-  {
-    trackId: 3,
-    filename: 'RATM - Killing In The Name Of',
-    trackLength: '4:46',
-  },
-]
-
 const RootComponent = () => {
   const [currentSong, setCurrentSong] = React.useState()
 
@@ -41,7 +21,7 @@ const RootComponent = () => {
   return (
     <div className='app'>
       <WindowBarComponent />
-      <PlayerComponent {...PlaylistItemsMocked[1]} currentPosition='0:00' />
+      <PlayerComponent />
       <PlaylistComponent />
       <AddSongComponent />
     </div>

@@ -14,7 +14,8 @@ const AddSongComponent = () => {
 
   return (
     <div className='add-song'>
-      <input type='file' onChange={(e) => handleSongPath(e.target.files[0])} />
+      <input id='fileChooser' type='file' onChange={(e) => handleSongPath(e.target.files[0])} />
+      <label htmlFor='fileChooser'>Add Song</label>
     </div>
   )
 }

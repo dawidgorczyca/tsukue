@@ -2,6 +2,10 @@
   float: left;
   width: 100%;
 
+  .audio-element {
+    display: none;
+  }
+
   .player__info-screen {
     font-family: 'changabold';
     font-size: 18px;
