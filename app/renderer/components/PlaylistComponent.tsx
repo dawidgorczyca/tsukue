@@ -1,26 +1,26 @@
 import * as React from 'react'
+import { observer } from 'mobx-react'
 
-import InterfacePlaylist from '../interfaces/InterfacePlaylist'
 import StoresContext from '../stores/storesContext'
 
-const PlaylistComponent = ({ items }: InterfacePlaylist) => {
+const PlaylistComponent = () => {
   const { PlaylistStore } = React.useContext(StoresContext)
-  const { setSelected } = PlaylistStore
+  const { items, setSelected } = PlaylistStore
 
+  let count = 0
   const handleItems = () =>
     items.map((item) => {
-      const { filename, title, artist, trackLength, trackId } = item
+      const { filename, title, artist, trackLength, trackId, name, path } = item
 
       let element = (
-        <li key={trackId} onClick={() => setSelected(item)}>
-          <span className='playlist-item__filename'>{filename}</span>
-          <span className='playlist-item__track-length'>{trackLength}</span>
+        <li key={count++} onClick={() => setSelected(item)}>
+          <span className='playlist-item__filename'>{name}</span>
         </li>
       )
 
       if (artist || title) {
         element = (
-          <li key={trackId} onClick={() => setSelected(item)}>
+          <li key={count++} onClick={() => setSelected(item)}>
             {artist ? <span className='playlist-item__artist'>{artist}</span> : ''}
             {title ? <span className='playlist-item__title'>{title}</span> : ''}
             <span className='playlist-item__track-length'>{trackLength}</span>
@@ -34,4 +34,4 @@ const PlaylistComponent = ({ items }: InterfacePlaylist) => {
   return <ul className='playlist'>{handleItems()}</ul>
 }
 
-export default PlaylistComponent
+export default observer(PlaylistComponent)

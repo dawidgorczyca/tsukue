@@ -5,6 +5,7 @@ import IpcService from '../services/Ipc.service'
 import PlayerComponent from '../components/PlayerComponent'
 import PlaylistComponent from '../components/PlaylistComponent'
 import WindowBarComponent from '../components/WindowBarComponent'
+import AddSongComponent from '../components/AddSongComponent'
 
 import '../styles/main.scss'
 
@@ -33,10 +34,6 @@ const PlaylistItemsMocked = [
 const RootComponent = () => {
   const [currentSong, setCurrentSong] = React.useState()
 
-  const handleSongPath = (songPath: string) => {
-    IpcService.sendEvent('file/readSong', songPath)
-  }
-
   React.useEffect(() => {
     IpcService.registerEvents()
   }, [])
@@ -45,8 +42,8 @@ const RootComponent = () => {
     <div className='app'>
       <WindowBarComponent />
       <PlayerComponent {...PlaylistItemsMocked[1]} currentPosition='0:00' />
-      <PlaylistComponent items={PlaylistItemsMocked} />
-      <input type='file' onChange={(e) => handleSongPath(e.target.files[0].path)} />
+      <PlaylistComponent />
+      <AddSongComponent />
     </div>
   )
 }
