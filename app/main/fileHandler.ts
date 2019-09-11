@@ -4,7 +4,6 @@ const fs = require('fs-extra')
 const isValid = require('is-valid-path')
 
 class FileHandler {
-
   public async readFolder(pathData) {
     try {
       const validation = this.validatePath(pathData)

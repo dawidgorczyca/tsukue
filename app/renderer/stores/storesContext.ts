@@ -5,7 +5,7 @@ import PlayerStore from './playerStore'
 
 const StoresContext = React.createContext({
   PlaylistStore,
-  PlayerStore
+  PlayerStore,
 })
 
 export default StoresContext

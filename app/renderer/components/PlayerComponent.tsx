@@ -19,10 +19,12 @@ const PlayerComponent = ({ currentPosition }) => {
     <div className='player'>
       {songData ? (
         <audio controls>
-          <source src={songData} type="audio/mpeg"/>
-        Your browser does not support the audio element.
+          <source src={songData} type='audio/mpeg' />
+          Your browser does not support the audio element.
         </audio>
-      ) : ''}
+      ) : (
+        ''
+      )}
       <div className='player__info-screen'>{artist && title ? `${artist} - ${title}` : filename}</div>
       <div className='player__timeline'>
         {currentPosition} / {trackLength}

@@ -31,7 +31,7 @@ const PlaylistItemsMocked = [
 ]
 
 const RootComponent = () => {
-  const [ currentSong, setCurrentSong ] = React.useState()
+  const [currentSong, setCurrentSong] = React.useState()
 
   const handleSongPath = (songPath: string) => {
     IpcService.sendEvent('file/readFile', songPath)
